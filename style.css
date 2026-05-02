@@ -251,6 +251,25 @@ a .material-symbols-outlined {
 
 @media screen and (max-width: 704px) {
 
+	.marquee {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+  }
+
+  .track {
+    display: flex;
+    width: max-content;
+    animation: marqueeMove 8s linear infinite;
+  }
+
+  .track span {
+    display: inline-block;
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding-right: 40px;
+  }
+
 	body {
     background: none; /* 기존 배경 제거 */
     background-color: white;
