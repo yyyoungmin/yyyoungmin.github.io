@@ -255,6 +255,8 @@ a .material-symbols-outlined {
     overflow: hidden;
     white-space: nowrap;
     width: 100%;
+		font-size: 12px;
+
   }
 
   .track {
