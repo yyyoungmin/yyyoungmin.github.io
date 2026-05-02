@@ -5,10 +5,14 @@ document.addEventListener("DOMContentLoaded", function () {
   function layoutPanels(activeIndex = null) {
     const total = panels.length;
 
+    // 🔥 marquee 제어 (핵심 추가)
+    document.body.classList.toggle("panel-open", activeIndex !== null);
+
     panels.forEach((panel) => {
       panel.classList.remove("active");
     });
 
+    // 👉 아무 패널도 안 열렸을 때 (처음 상태)
     if (activeIndex === null) {
       panels.forEach((panel, i) => {
         panel.style.top = "auto";
@@ -18,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
+    // 👉 선택된 패널 열기
     panels[activeIndex].classList.add("active");
 
     panels.forEach((panel, i) => {
@@ -25,14 +30,16 @@ document.addEventListener("DOMContentLoaded", function () {
         panel.style.top = `${i * headerHeight}px`;
         panel.style.bottom = "auto";
         panel.style.height = `${headerHeight}px`;
-      } else if (i === activeIndex) {
+      } 
+      else if (i === activeIndex) {
         const belowCount = total - activeIndex - 1;
         const bottomReserved = belowCount * headerHeight;
 
         panel.style.top = `${i * headerHeight}px`;
         panel.style.bottom = "auto";
         panel.style.height = `calc(100vh - ${i * headerHeight}px - ${bottomReserved}px)`;
-      } else {
+      } 
+      else {
         const fromBottom = total - 1 - i;
         panel.style.bottom = "auto";
         panel.style.top = `calc(100vh - ${(fromBottom + 1) * headerHeight}px)`;
@@ -41,12 +48,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // 👉 panel 클릭 이벤트
   panels.forEach((panel, index) => {
     panel.addEventListener("click", () => {
       const isActive = panel.classList.contains("active");
       layoutPanels(isActive ? null : index);
     });
   });
+
+  // -------------------------
+  // 🌐 언어 토글
+  // -------------------------
 
   const koBtn = document.getElementById("koBtn");
   const enBtn = document.getElementById("enBtn");
@@ -81,6 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (currentLang === "jp") jpBtn.style.display = "none";
   }
 
+  // 👉 버튼 클릭 시 panel 클릭 막기
   if (langToggle) {
     langToggle.addEventListener("click", (event) => {
       event.stopPropagation();
@@ -102,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
     setLanguage("jp");
   });
 
-  // 첫 화면은 무조건 닫힌 상태
+  // 👉 초기 상태
   setLanguage(currentLang, false);
   layoutPanels(null);
 });
