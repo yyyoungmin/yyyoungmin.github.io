@@ -219,7 +219,7 @@ a .material-symbols-outlined {
   overflow: hidden;
   white-space: nowrap;
   z-index: 9999;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .track {
@@ -264,7 +264,7 @@ a .material-symbols-outlined {
   width: 100%;
   overflow: hidden;
   white-space: nowrap;
-  font-size: 4vw;
+  font-size: clamp(14px, 4.5vw, 20px);
   z-index: 9999;
 }
 
